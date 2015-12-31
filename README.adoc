@@ -1,0 +1,15 @@
+= vagrant-centos7-rundeck
+
+An example I use for creating an Ansible (and Rundeck) base box.
+
+After it's all said and done with 'vagrant up' you should be able to get to rundeck here:
+
+ http://192.168.33.10:4440
+ 
+This relies on a very good galaxy plugin called ansiblebit.oracle-java (using this uses Oracle JDK 8, which in turn means using this implies you've accepted Oracle's license. Buyer beware).
+
+It also relies on a fork of a galaxy plugin called neel.rundeck which does the rundeck heavy lifting. It's worth using for no other reason that it handles the hateful JAAS realm security users and groups.
+
+I'm also really happy with the geerlingguy/centos7 box. I'm using it for lots and has done a good job of keeping it up-to-date. So thank you for that.
+
+Neither here nor there, but geerlingguy also just updated his book "Ansible for Devops" on leanpub a couple of days ago. It's worth what he's asking for in my opinion.
