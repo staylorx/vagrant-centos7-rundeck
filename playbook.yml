@@ -1,0 +1,32 @@
+---
+- hosts: all
+  sudo: yes
+
+  roles:
+    - {
+        role: ansiblebit.oracle-java,
+        oracle_java_set_as_default: yes
+      }
+    - {
+        role: neel.rundeck,
+        rundeck_domain: "{{ inventory_hostname }}"
+      }
+
+  #vars:
+  #  java_version: 8
+
+  tasks:
+  - name: Ensure NTP (for time synchronization) is installed.
+    yum: name=ntp state=present
+
+  - name: Ensure NTP is running.
+    service: name=ntpd state=started enabled=yes
+
+  - name: Ensure firewalls are down (for installs only)
+    service: name={{ item }} enabled=no state=stopped
+    with_items:
+    - iptables
+    - firewalld
+
+  - name: Ensure rundeckd is started
+    service: name=rundeckd enabled=yes state=started

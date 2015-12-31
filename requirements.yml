@@ -1,0 +1,9 @@
+---
+
+# Nifty role to install oracle JDK, implies acceptance of the Oracle license.
+- src: ansiblebit.oracle-java
+
+# replacing neel.rundeck for a port fix
+- src: https://github.com/staylorx/ansible-rundeck
+  version: develop
+  name: neel.rundeck
